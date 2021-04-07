@@ -20,7 +20,6 @@ fetch(urlproduct)
      let span = createNode("span")
 
     img.setAttribute("width", "200")
-    //jangan lupa pake kurung kurawal bukan kurun [] kek spongebob
      img.src=product.image;
      span.innerHTML = `${product.title}, ${product.price}`
 
