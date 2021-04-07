@@ -1,6 +1,6 @@
 const products = document.getElementById('products')
 
-const urlproduct = ("https://fakestoreapi.com/products")
+const urlproduct = ("https://animechan.vercel.app/api/quotes")
 
 function createNode(element) {
     return document.createElement(element)
@@ -14,17 +14,16 @@ fetch(urlproduct)
 .then(response => response.json())
 .then((json) => {
     console.log(json)
-     json.map((product) => {
+     json.map((ser) => {
      let li = createNode("li")
-     let img = createNode("img")
+  //   let img = createNode("img")
      let span = createNode("span")
 
-    img.setAttribute("width", "200")
-    //jangan lupa pake kurung kurawal bukan kurun [] kek spongebob
-     img.src=product.image;
-     span.innerHTML = `${product.title}, ${product.price}`
+    // img.setAttribute("width", "200")
+   //  img.src=tes.image;
+     span.innerHTML = `${ser.anime}, ${ser.character}`
 
-    append(li, img)
+   // append(li, img)
     append(li, span)
     append(products, li)
  })
@@ -32,3 +31,16 @@ fetch(urlproduct)
  
 })
 .catch((error)=>console.log(error))
+let productfilter = []
+
+const search = document.getElementById('search')
+search.addEventListener('input', event => {
+    const searchstring = event.target.value;
+    const productfilter = filter( product => {
+       return ser.title.contain(searchstring)
+    });
+
+  });
+
+
+
