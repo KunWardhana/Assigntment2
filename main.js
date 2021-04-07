@@ -23,14 +23,14 @@ function initialize()
 function loadData(json) 
 {
     
-    
+    showData(json)
     searchbar.addEventListener('keypress', (e) =>{
         if (e.key === 'Enter') {
             console.log(e.target.value);
-            const stringsearch = e.target.value;
+            const stringsearch = e.target.value.toLowerCase();
             const filtered = json.filter((product) =>{
                 return (
-                    product.title.includes(stringsearch)
+                    product.title.toLowerCase().includes(stringsearch)
                 );
             })
             while (products.firstChild) {

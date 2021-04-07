@@ -342,7 +342,7 @@ progress {
 
 [type=search] {
   outline-offset: -2px;
-  -webkit-appearance: none;
+  -webkit-appearance: none;-
 }
 
 [type=search]::-webkit-search-decoration {
@@ -5666,6 +5666,12 @@ a.badge-dark.focus {
   font-size: 0.675rem;
   background-color: #e9ecef;
   border-radius: 0.25rem;
+}
+
+.search {
+  width: 100%;
+  margin: 20px;
+  text-align:center;
 }
 
 .progress-bar {
