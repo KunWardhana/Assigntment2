@@ -46,8 +46,12 @@ function showTitle()
 {
     let HeaderImage = createNode("th")
         HeaderImage.innerHTML = "Image"
+        HeaderImage.setAttribute("width", "200")
+
     let HeaderName = createNode("th")
         HeaderName.innerHTML = "Name"
+        HeaderName.setAttribute("width", "700")
+        
     let HeaderPrice = createNode("th")
         HeaderPrice.innerHTML = "Price"
 
