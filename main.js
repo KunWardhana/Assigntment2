@@ -22,7 +22,6 @@ function initialize()
 
 function loadData(json) 
 {
-    
     showData(json)
     searchbar.addEventListener('keypress', (e) =>{
         if (e.key === 'Enter') {
@@ -43,9 +42,27 @@ function loadData(json)
 
 }
 
+function showTitle()
+{
+    let HeaderImage = createNode("th")
+        HeaderImage.innerHTML = "Image"
+    let HeaderName = createNode("th")
+        HeaderName.innerHTML = "Name"
+    let HeaderPrice = createNode("th")
+        HeaderPrice.innerHTML = "Price"
+
+    append(products, HeaderImage)
+    append(products, HeaderName)
+    append(products, HeaderPrice)
+}
+
 function showData(json){
     console.log(json)
+
+    showTitle()
+
     json.map((product) => {
+
         let tr = createNode("tr")
         let th1 = createNode("th");
         let th2 = createNode("th");
