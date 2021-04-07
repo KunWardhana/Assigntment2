@@ -1,6 +1,6 @@
 const products = document.getElementById('productsTable')
-
-const urlproduct = ("https://animechan.vercel.app/api/quotes")
+const urlproduct = ("https://fakestoreapi.com/products")
+const searchbar = document.getElementById('search')
 
 function createNode(element) {
     return document.createElement(element)
@@ -10,51 +10,71 @@ function append(parent, el) {
     return parent.appendChild(el);
 }
 
-fetch(urlproduct)
-.then(response => response.json())
-.then((json) => {
+function initialize()
+{
+    fetch(urlproduct)
+    .then(response => response.json())
+    .then((json) => (loadData(json)))
+    .catch((error)=>console.log(error));
+}
+
+
+
+function loadData(json) 
+{
+    
+    
+    searchbar.addEventListener('keypress', (e) =>{
+        if (e.key === 'Enter') {
+            console.log(e.target.value);
+            const stringsearch = e.target.value;
+            const filtered = json.filter((product) =>{
+                return (
+                    product.title.includes(stringsearch)
+                );
+            })
+            while (products.firstChild) {
+                products.removeChild(products.lastChild);
+              }
+            showData(filtered)
+          }
+
+    })
+
+}
+
+function showData(json){
     console.log(json)
-     json.map((product) => {
-     let tr = createNode("tr")
-     let th1 = createNode("th");
-     let th2 = createNode("th");
-     let th3 = createNode("th");
-     let img = createNode("img")
-     let spanTitle = createNode("span")
-     let spanPrice = createNode("price");
+    json.map((product) => {
+        let tr = createNode("tr")
+        let th1 = createNode("th");
+        let th2 = createNode("th");
+        let th3 = createNode("th");
+        let img = createNode("img")
+        let spanTitle = createNode("span")
+        let spanPrice = createNode("price");
+   
+       img.setAttribute("width", "200")
+       img.src=product.image;
+       spanTitle.innerHTML = `${product.title}`
+       spanPrice.innerHTML = "$. "+`${product.price}`
+        
+       
+       //append colomb 1
+       append(th1, img);
+       //append colomb 2
+       append(th2, spanTitle);
+       //append colomb 3
+       append(th3, spanPrice);
+       //append all
+       append(tr, th1)
+       append(tr, th2)
+       append(tr, th3)
+       append(products, tr)
+    })
+}
 
-    img.setAttribute("width", "200")
-    img.src=product.image;
-    spanTitle.innerHTML = `${product.title}`
-    spanPrice.innerHTML = `${product.price}`
-
-
-    //append colomb 1
-    append(th1, img);
-    //append colomb 2
-    append(th2, spanTitle);
-    //append colomb 3
-    append(th3, spanPrice);
-    //append all
-    append(tr, th1)
-    append(tr, th2)
-    append(tr, th3)
-    append(products, tr)
- })
-
- 
-})
-.catch((error)=>console.log(error))
-let productfilter = []
-
-const search = document.getElementById('search')
-search.addEventListener('input', event => {
-    const searchstring = event.target.value;
-    const productfilter = filter( product => {
-       return ser.title.contain(searchstring)
-    });
-
-  });
+initialize();
 
 
 
